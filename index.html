@@ -1,11 +1,588 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>BDTX - Bangladesh Digital Token Exchange</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BDTXcorlabs - Powering Blockchain Innovation</title>
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            --bg-color: #030005; /* Blackish background */
+            --card-bg: #0f0a14; /* Dark card background */
+            --text-main: #ffffff;
+            --text-secondary: #b5b5b5;
+            --purple-accent: #a855f7;
+            --purple-dark: #6b21a8;
+            --border-color: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Gradient Background Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, rgba(3,0,5,0) 60%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Navbar */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background-color: rgba(3, 0, 5, 0.9);
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            color: var(--purple-accent);
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .tagline {
+            display: inline-block;
+            background-color: #1a1a1a;
+            border: 1px solid var(--border-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .tagline-dot {
+            height: 8px;
+            width: 8px;
+            background-color: var(--purple-accent);
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            font-size: 18px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #c084fc; /* Lighter purple from image */
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--purple-accent);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--text-secondary);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-main);
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .status-dots {
+            margin-top: 30px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .dot { height: 8px; width: 8px; border-radius: 50%; display: inline-block; margin-right: 5px;}
+        .dot-green { background-color: #22c55e; }
+        .dot-blue { background-color: #3b82f6; }
+
+        /* Ecosystem Pulse Section */
+        .ecosystem-pulse {
+            padding: 60px 0;
+        }
+
+        .pulse-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .alpha-badge {
+            background-color: rgba(168,85,247,0.1);
+            color: #d8b4fe;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            border: 1px solid rgba(168,85,247,0.3);
+        }
+
+        .visual-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #090909 0%, #1a0b2e 100%);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+            color: var(--purple-accent);
+            font-weight: bold;
+        }
+
+        .pulse-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .pulse-meta strong { color: var(--text-main); display: block; margin-bottom: 5px; }
+
+        /* Vision Principles Section */
+        .vision {
+            padding: 80px 0;
+        }
+
+        .section-title-area { margin-bottom: 50px; max-width: 800px; }
+        .section-title-area h2 { font-size: 36px; margin-bottom: 15px; }
+        .section-title-area p { color: var(--text-secondary); }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .principle-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .core-badge {
+            font-size: 12px;
+            color: #b5b5b5;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background-color: rgba(255,255,255,0.05);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .principle-list { list-style: none; }
+        .principle-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .principle-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 7px;
+            height: 8px;
+            width: 8px;
+            background-color: var(--purple-accent);
+            border-radius: 50%;
+        }
+
+        .principle-list li strong { color: var(--text-main); display: block; font-size: 16px; margin-bottom: 2px; }
+
+        /* Momentum Indicators Section */
+        .momentum {
+            padding: 80px 0;
+            background-color: #060309; /* Slightly different dark */
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .metric-card {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .metric-value {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+
+        .metric-title {
+            color: var(--purple-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .metric-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+        }
+
+        .faq-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--purple-accent);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .faq-icon {
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0 30px 0;
+            border-top: 1px solid var(--border-color);
+            background-color: #010002;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo-area h3 { color: var(--text-main); margin-bottom: 10px; }
+        .footer-desc { margin-bottom: 15px; max-width: 400px;}
+        .disclaimer { font-size: 12px; line-height: 1.4; color: #555; }
+
+        .footer-nav h4 { color: var(--text-main); text-transform: uppercase; letter-spacing: 1px; font-size: 12px; margin-bottom: 15px; }
+        .footer-nav ul { list-style: none; }
+        .footer-nav ul li { margin-bottom: 8px; }
+        .footer-nav ul li a { text-decoration: none; color: var(--text-secondary); transition: color 0.3s ease; }
+        .footer-nav ul li a:hover { color: var(--text-main); }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 20px;
+            font-size: 12px;
+        }
+
+        /* Responsive Styles (Mobile First) */
+        @media (max-width: 768px) {
+            h1 { font-size: 32px; }
+            .section-title-area h2 { font-size: 28px; }
+            .hero { padding: 60px 0; }
+            .pulse-meta { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .btn-group { flex-direction: column; gap: 10px; }
+            .btn { width: 100%; text-align: center; }
+        }
+    </style>
 </head>
-<body style="background-color: #000; color: #fff; text-align: center; padding: 50px;">
-    <h1>Welcome to BDTX</h1>
-    <p>Bangladesh Digital Token Exchange is coming soon!</p>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">✦</span> BDTXcorlabs
+            </a>
+            <div class="menu-icon">☰</div>
+        </div>
+    </header>
+
+    <section class="hero container">
+        <div class="tagline">
+            <span class="tagline-dot"></span> BDTXCORLABS TOKEN NETWORK
+        </div>
+        <h1>Powering the next wave of<br> blockchain innovation.</h1>
+        <p class="hero-desc">BDTXcorlabs is building a transparent, utility-first digital asset ecosystem designed for resilient growth, open participation, and community-led momentum without making unrealistic promises.</p>
+        <div class="btn-group">
+            <a href="#" class="btn btn-primary">Explore the Ecosystem</a>
+            <a href="#" class="btn btn-secondary">Read the Vision</a>
+        </div>
+        <div class="status-dots">
+            <span><span class="dot dot-green"></span> Auditable smart contract strategy</span>
+            <span><span class="dot dot-blue"></span> Community-driven roadmap milestones</span>
+        </div>
+    </section>
+
+    <section class="ecosystem-pulse container">
+        <div class="pulse-card">
+            <div class="card-header">
+                <div>
+                    <div style="text-transform: uppercase; color: #555; letter-spacing: 1px; font-size: 12px; margin-bottom: 3px;">ECOSYSTEM PULSE</div>
+                    <h3 style="font-size: 22px;">Live Utility Engine</h3>
+                </div>
+                <span class="alpha-badge">Alpha</span>
+            </div>
+            
+            <div class="visual-placeholder">
+                <div style="font-size: 40px;">⬢</div>
+                [Sphere Visual Placeholder]
+            </div>
+
+            <div class="pulse-meta">
+                <div>
+                    <strong>UTILITY LAYER</strong>
+                    Composability, staking, and governance modules.
+                </div>
+                <div>
+                    <strong>TRANSPARENCY</strong>
+                    On-chain reporting and open community updates.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="vision container">
+        <div class="principles-grid">
+            <div class="principle-card" style="grid-column: span 2;">
+                <div class="section-title-area">
+                    <div style="text-transform: uppercase; color: #555; letter-spacing: 1px; font-size: 12px; margin-bottom: 5px;">CORE PILLARS</div>
+                    <h2>Building a durable, transparent digital asset ecosystem</h2>
+                    <p>BDTXcorlabs is designed around a long-term mission: to deliver a dependable blockchain environment where innovation and utility are prioritized over hype...</p>
+                </div>
+            </div>
+
+            <div class="principle-card">
+                <div class="card-top">
+                    <h3>Vision Principles</h3>
+                    <span class="core-badge">CORE</span>
+                </div>
+                <ul class="principle-list">
+                    <li><strong>Innovation with purpose</strong>Practical technology upgrades that serve real on-chain use cases.</li>
+                    <li><strong>Radical transparency</strong>Clear communications, visible milestones, and accountable delivery.</li>
+                    <li><strong>Accessibility for builders</strong>Lowering barriers for developers and community contributors.</li>
+                    <li><strong>Sustainable momentum</strong>Growth rooted in participation, not speculative promises.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="momentum">
+        <div class="container">
+            <div class="section-title-area" style="margin-bottom: 0;">
+                <div style="text-transform: uppercase; color: var(--purple-accent); letter-spacing: 1px; font-size: 12px; margin-bottom: 5px;">ECOSYSTEM SIGNALS</div>
+                <h2>Momentum indicators for the BDTXcorlabs roadmap</h2>
+                <p>These high-level metrics communicate focus areas and directional goals across the BDTXcorlabs ecosystem.</p>
+                <div class="tagline" style="margin-top: 15px; background-color: #0a0a0a;">
+                    <span class="dot dot-green"></span> UPDATED VISION SNAPSHOT
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">3</div>
+                    <div class="metric-title">CORE UTILITY PATHS</div>
+                    <div class="metric-desc">Infrastructure, governance, and real-world integrations building layered use cases.</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">24/7</div>
+                    <div class="metric-title">GLOBAL COMMUNITY</div>
+                    <div class="metric-desc">Always-on collaboration across regions, channels, and contributors.</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">4</div>
+                    <div class="metric-title">ROADMAP PHASES</div>
+                    <div class="metric-desc">Discovery, build-out, ecosystem activation, and scale readiness.</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-title">COMMUNITY-DRIVEN VISION</div>
+                    <div class="metric-desc">Strategic direction shaped by transparent feedback and governance.</div>
+                </div>
+            </div>
+            <p style="font-size: 12px; color: #444; margin-top: 20px; text-align: center;">Figures represent positioning and intent for the BDTXcorlabs ecosystem and are subject to refinement.</p>
+        </div>
+    </section>
+
+    <section class="faq container">
+        <div class="section-title-area">
+            <div style="text-transform: uppercase; color: #555; letter-spacing: 1px; font-size: 12px; margin-bottom: 5px;">FAQ</div>
+            <h2>Clarity for new and seasoned community members</h2>
+            <p>BDTXcorlabs is built to be transparent and professional. These answers provide a concise overview.</p>
+        </div>
+
+        <div class="pulse-card" style="margin-bottom: 30px; padding: 20px;">
+            <p style="font-weight: 600; margin-bottom: 5px;">Need more details?</p>
+            <p style="color: var(--text-secondary); font-size: 14px;">Join community channels for announcements, roadmap updates, and security notices. Always verify information from official sources.</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What is BDTXcorlabs?</div>
+            <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What is the long-term vision?</div>
+            <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What gives the token utility?</div>
+            <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How can community members stay informed?</div>
+            <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Is this financial advice?</div>
+            <div class="faq-icon">+</div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo-area">
+                    <h3><span class="logo-icon">✦</span> BDTXcorlabs</h3>
+                    <p class="footer-desc">A forward-looking digital asset ecosystem focused on transparency, utility, and community momentum.</p>
+                    <p class="disclaimer">Disclaimer: This website is for informational purposes only and does not constitute financial, investment, or trading advice.</p>
+                </div>
+                <div class="footer-nav">
+                    <h4>NAVIGATE</h4>
+                    <ul>
+                        <li><a href="#">Overview</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Stats</a></li>
+                        <li><a href="#">Ecosystem</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BDTXcorlabs. All rights reserved.</p>
+                <p>Built for a transparent, community-driven token ecosystem.</p>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
