@@ -7,186 +7,176 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&family=Inter:wght@400;700&display=swap');
         
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
-            background-color: #05020a;
-            color: #ffffff;
-        }
-
-        .crypto-gradient {
-            background: linear-gradient(135deg, #6d28d9 0%, #1e1b4b 100%);
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.3s;
-        }
-
-        .glass-card:hover {
-            border-color: #a78bfa;
-            transform: translateY(-5px);
-        }
-
-        .glow-text {
-            text-shadow: 0 0 15px rgba(167, 139, 250, 0.5);
-        }
+        body { font-family: 'Hind Siliguri', 'Inter', sans-serif; background-color: #030005; color: #ffffff; scroll-behavior: smooth; }
+        .purple-glow { box-shadow: 0 0 30px rgba(167, 139, 250, 0.2); }
+        .glass-nav { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(167, 139, 250, 0.2); }
+        .gradient-text { background: linear-gradient(90deg, #a78bfa, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card-hover { transition: all 0.4s ease; border: 1px solid rgba(255,255,255,0.05); }
+        .card-hover:hover { transform: translateY(-10px); border-color: #a78bfa; background: rgba(167, 139, 250, 0.05); }
+        .lang-switch { cursor: pointer; transition: 0.3s; }
+        .hidden-lang { display: none; }
     </style>
 </head>
 <body class="overflow-x-hidden">
 
-    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+    <nav class="fixed w-full z-50 glass-nav">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white flex items-center gap-2">
-                <span class="text-purple-500"><i class="fas fa-coins"></i></span> BDTX
+            <a href="#" class="text-2xl font-bold gradient-text flex items-center gap-2">
+                <i class="fas fa-microchip"></i> BDTX
             </a>
             <div class="hidden md:flex gap-8 text-sm font-medium">
-                <a href="#about" class="hover:text-purple-400">সম্পর্কে</a>
-                <a href="#vision" class="hover:text-purple-400">মিশন-ভিশন</a>
-                <a href="#projects" class="hover:text-purple-400">পার্টনার্স</a>
-                <a href="#charity" class="hover:text-purple-400">সামাজিক কাজ</a>
-                <a href="#contact" class="hover:text-purple-400">যোগাযোগ</a>
+                <a href="#about" class="hover:text-purple-400 bn">সম্পর্কে</a>
+                <a href="#about" class="hover:text-purple-400 en hidden-lang">About</a>
+                <a href="#vision" class="hover:text-purple-400 bn">ভিশন</a>
+                <a href="#vision" class="hover:text-purple-400 en hidden-lang">Vision</a>
+                <a href="#owner" class="hover:text-purple-400 bn">মালিক</a>
+                <a href="#owner" class="hover:text-purple-400 en hidden-lang">Founder</a>
+                <a href="#contact" class="hover:text-purple-400 bn">যোগাযোগ</a>
+                <a href="#contact" class="hover:text-purple-400 en hidden-lang">Contact</a>
             </div>
-            <a href="https://www.bdtx.ltd" class="bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-full text-sm font-bold transition">Launch App</a>
+            <button onclick="toggleLanguage()" class="bg-purple-600/20 border border-purple-500 text-purple-400 px-4 py-1 rounded-lg text-xs font-bold hover:bg-purple-600 hover:text-white transition">
+                <span id="langBtnText">English</span>
+            </button>
         </div>
     </nav>
 
-    <header class="relative pt-32 pb-20 px-6">
-        <div class="container mx-auto text-center relative z-10">
-            <span class="bg-purple-900/30 text-purple-400 px-4 py-1 rounded-full text-xs font-bold border border-purple-500/30 mb-6 inline-block">SOLANA NETWORK UPCOMING</span>
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 glow-text">Bangladesh Digital <br><span class="text-purple-500">Token Exchange</span></h1>
-            <p class="text-gray-400 max-w-2xl mx-auto text-lg mb-10">
-                বাংলাদেশের তরুণদের স্বপ্নের প্রতিফলন। আমরা বড় টোকেনগুলোর দেখানো পথে হেঁটে তৈরি করছি দেশের সবচেয়ে সফল ক্রিপ্টো ইকোসিস্টেম।
-            </p>
+    <header class="pt-40 pb-20 px-6 text-center relative">
+        <div class="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-600/10 blur-[120px] rounded-full -z-10"></div>
+        <div class="container mx-auto">
+            <span class="bg-purple-900/30 text-purple-400 px-4 py-1 rounded-full text-xs font-bold border border-purple-500/30 mb-6 inline-block">SOLANA ECOSYSTEM</span>
+            <h1 class="text-5xl md:text-7xl font-black mb-6">
+                <span class="bn">বাংলাদেশ ডিজিটাল <br><span class="gradient-text">টোকেন এক্সচেঞ্জ</span></span>
+                <span class="en hidden-lang">Bangladesh Digital <br><span class="gradient-text">Token Exchange</span></span>
+            </h1>
+            
+            <div class="max-w-xl mx-auto bg-white/5 border border-white/10 p-4 rounded-2xl mb-10 purple-glow">
+                <p class="text-xs text-gray-400 mb-2 uppercase tracking-widest">Mint Address (Solana)</p>
+                <code class="text-purple-400 break-all text-sm font-mono" id="mintAddr">4k3DyjR... [আপনার মিন্ট এড্রেস এখানে দিন]</code>
+                <button onclick="copyMint()" class="ml-2 text-gray-400 hover:text-white"><i class="fas fa-copy"></i></button>
+            </div>
+
             <div class="flex flex-wrap justify-center gap-4">
-                <button class="bg-white text-black px-8 py-3 rounded-lg font-bold hover:bg-gray-200">Get Started</button>
-                <button class="border border-white/20 px-8 py-3 rounded-lg font-bold hover:bg-white/10">Whitepaper</button>
+                <a href="https://t.me/bdtxofficial" target="_blank" class="bg-white text-black px-8 py-3 rounded-xl font-bold hover:scale-105 transition flex items-center gap-2">
+                    <i class="fab fa-telegram"></i> Telegram
+                </a>
+                <a href="https://x.com/bdtxofficial" target="_blank" class="border border-white/20 px-8 py-3 rounded-xl font-bold hover:bg-white/5 transition flex items-center gap-2">
+                    <i class="fab fa-x-twitter"></i> Twitter (X)
+                </a>
             </div>
         </div>
     </header>
 
-    <section id="about" class="py-20 px-6 bg-white/5">
-        <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <h2 class="text-3xl font-bold mb-6 text-purple-400">কেন BDTX? এক স্বপ্নের গল্প</h2>
-                <p class="text-gray-300 leading-relaxed mb-6 text-justify">
-                    বাংলাদেশে ক্রিপ্টোকারেন্সির চাহিদা ও তরুণদের আকাশছোঁয়া স্বপ্ন মিলিয়েই BDTX-এর জন্ম। আমাদের তরুণ সমাজ যখন বিশ্ববাজারের সাথে তাল মেলাতে হিমশিম খাচ্ছিল, ঠিক তখনই BDTX CorLabs গবেষণার মাধ্যমে সোলানা (Solana) নেটওয়ার্কে নিজেদের টোকেন লঞ্চ করার সিদ্ধান্ত নেয়। এটি কেবল একটি ডিজিটাল কয়েন নয়, এটি বাংলাদেশের হাজারো উদ্যোক্তা আর প্রযুক্তিপ্রেমী তরুণের আস্থার নাম। আমরা ওয়াদাবদ্ধ—বিশ্বের বড় বড় টোকেনগুলো যে পথ দেখিয়ে গেছে, সেই সফলতার পথেই আমরা আমাদের কমিউনিটিকে নিয়ে যাব।
+    <section id="about" class="py-20 px-6">
+        <div class="container mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div class="card-hover p-8 rounded-3xl bg-white/5">
+                <h2 class="text-3xl font-bold mb-6 text-purple-400 bn">কেন BDTX? এক স্বপ্নের গল্প</h2>
+                <h2 class="text-3xl font-bold mb-6 text-purple-400 en hidden-lang">Why BDTX? The Dream</h2>
+                <p class="text-gray-300 leading-relaxed text-justify bn">
+                    বাংলাদেশে ক্রিপ্টোকারেন্সির চাহিদা ও তরুণদের আকাশছোঁয়া স্বপ্ন মিলিয়েই BDTX-এর জন্ম। সোলানা নেটওয়ার্কের দ্রুততম গতি আর BDTX CorLabs-এর গবেষণায় আমরা একটি শক্তিশালী ইকোসিস্টেম তৈরি করছি। Dhakabrief.com ও MH IT SHOP-এর মতো সফল প্রতিষ্ঠানের অভিজ্ঞতায় আমরা বড় টোকেনগুলোর দেখানো পথে হেঁটে তরুণদের দেওয়া ওয়াদা পূরণ করতে বদ্ধপরিকর।
                 </p>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="glass-card p-4 rounded-xl">
-                        <h4 class="text-purple-500 font-bold text-xl">100%</h4>
-                        <p class="text-xs text-gray-400">কমিউনিটি ফোকাসড</p>
-                    </div>
-                    <div class="glass-card p-4 rounded-xl">
-                        <h4 class="text-purple-500 font-bold text-xl">Solana</h4>
-                        <p class="text-xs text-gray-400">নেটওয়ার্ক স্পিড</p>
-                    </div>
+                <p class="text-gray-300 leading-relaxed text-justify en hidden-lang">
+                    Born from the intersection of rising crypto demand and youth aspirations in Bangladesh. Utilizing Solana's speed and BDTX CorLabs research, we're building a robust ecosystem. Backed by the success of DhakaBrief.com and MH IT SHOP, we are committed to fulfilling our promise to the youth.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 gap-6">
+                <div class="card-hover p-6 rounded-2xl text-center">
+                    <i class="fas fa-shield-halved text-3xl text-purple-500 mb-4"></i>
+                    <h4 class="font-bold bn">নিরাপদ</h4>
+                    <h4 class="font-bold en hidden-lang">Secure</h4>
                 </div>
-            </div>
-            <div class="relative">
-                <div class="absolute -inset-4 bg-purple-600/20 blur-3xl rounded-full"></div>
-                <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=1000" class="rounded-2xl relative z-10 border border-white/10 shadow-2xl" alt="Crypto Vision">
-            </div>
-        </div>
-    </section>
-
-    <section id="vision" class="py-20 px-6">
-        <div class="container mx-auto text-center mb-16">
-            <h2 class="text-4xl font-bold">মিশন ও ভিশন</h2>
-        </div>
-        <div class="container mx-auto grid md:grid-cols-2 gap-8">
-            <div class="glass-card p-8 rounded-2xl border-l-4 border-l-purple-500">
-                <div class="text-3xl text-purple-500 mb-4"><i class="fas fa-bullseye"></i></div>
-                <h3 class="text-2xl font-bold mb-4">আমাদের মিশন</h3>
-                <p class="text-gray-400">বাংলাদেশের সাধারণ মানুষের কাছে ডিজিটাল কারেন্সির সুবিধা পৌঁছে দেওয়া এবং একটি নিরাপদ, স্বচ্ছ লেনদেনের মাধ্যম তৈরি করা যা দেশের অর্থনীতিতে নতুন গতির সঞ্চার করবে।</p>
-            </div>
-            <div class="glass-card p-8 rounded-2xl border-l-4 border-l-blue-500">
-                <div class="text-3xl text-blue-500 mb-4"><i class="fas fa-eye"></i></div>
-                <h3 class="text-2xl font-bold mb-4">আমাদের ভিশন</h3>
-                <p class="text-gray-400">আগামী ৫ বছরের মধ্যে BDTX-কে এশিয়ার অন্যতম শক্তিশালী এবং নির্ভরযোগ্য ক্রিপ্টোকারেন্সি হিসেবে প্রতিষ্ঠিত করা, যা প্রযুক্তিনির্ভর বাংলাদেশের নেতৃত্ব দিবে।</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="py-20 px-6 bg-purple-900/10">
-        <div class="container mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4 text-purple-400">অভিজ্ঞতা ও বিশ্বস্ততা</h2>
-                <p class="text-gray-400">Bdtx.ltd দীর্ঘদিনের সফল পথচলায় নিচের নামী প্রতিষ্ঠানগুলোর সাথে যুক্ত রয়েছে:</p>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="glass-card p-6 rounded-xl text-center">
-                    <h5 class="font-bold text-white">DhakaBrief.com</h5>
-                </div>
-                <div class="glass-card p-6 rounded-xl text-center">
-                    <h5 class="font-bold text-white">MH IT SHOP</h5>
-                </div>
-                <div class="glass-card p-6 rounded-xl text-center">
-                    <h5 class="font-bold text-white">Fiberchem Trading</h5>
-                </div>
-                <div class="glass-card p-6 rounded-xl text-center">
-                    <h5 class="font-bold text-white">Nextcity Builders</h5>
+                <div class="card-hover p-6 rounded-2xl text-center">
+                    <i class="fas fa-bolt text-3xl text-yellow-500 mb-4"></i>
+                    <h4 class="font-bold bn">দ্রুত গতি</h4>
+                    <h4 class="font-bold en hidden-lang">Fast</h4>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="charity" class="py-20 px-6">
-        <div class="container mx-auto glass-card p-10 rounded-3xl overflow-hidden relative">
-            <div class="absolute top-0 right-0 p-4 bg-yellow-500 text-black text-xs font-black uppercase">Upcoming</div>
-            <div class="grid md:grid-cols-2 gap-10 items-center">
-                <div>
-                    <h2 class="text-4xl font-bold mb-6 leading-tight">Hashi Shikkha <br><span class="text-yellow-500">Foundation</span></h2>
-                    <p class="text-gray-300 mb-6">আমাদের সফলতার একটি অংশ যাবে মানবতার সেবায়। আমরা দেশের গরীব ও মেধাবী ছাত্র-ছাত্রীদের শিক্ষা উপকরণ এবং উচ্চশিক্ষার জন্য বৃত্তি প্রদানের মাধ্যমে একটি শিক্ষিত জাতি গঠনে কাজ করব।</p>
-                    <ul class="space-y-3">
-                        <li class="flex items-center gap-2 text-gray-400"><i class="fas fa-check text-yellow-500"></i> বিনামূল্যে শিক্ষা উপকরণ বিতরণ</li>
-                        <li class="flex items-center gap-2 text-gray-400"><i class="fas fa-check text-yellow-500"></i> উচ্চশিক্ষা বৃত্তি প্রকল্প</li>
-                    </ul>
-                </div>
-                <div class="bg-yellow-500/10 p-8 rounded-2xl border border-yellow-500/20 text-center">
-                    <i class="fas fa-graduation-cap text-6xl text-yellow-500 mb-4"></i>
-                    <h4 class="text-xl font-bold">স্বপ্ন এখন পূরণ হবে সবার</h4>
-                </div>
+    <section id="owner" class="py-20 px-6 bg-white/5">
+        <div class="container mx-auto flex flex-col md:flex-row gap-12 items-center">
+            <div class="w-48 h-48 rounded-full border-4 border-purple-500 p-2 overflow-hidden">
+                <img src="https://via.placeholder.com/200" alt="MD. MONIR HOSSAIN" class="w-full h-full object-cover rounded-full">
+            </div>
+            <div class="flex-1">
+                <h2 class="text-3xl font-bold mb-2 bn">মোঃ মনির হোসেন</h2>
+                <h2 class="text-3xl font-bold mb-2 en hidden-lang">MD. MONIR HOSSAIN</h2>
+                <p class="text-purple-400 font-bold mb-4">(Shihab-Ullah Khan Monir)</p>
+                <p class="text-gray-400 leading-relaxed bn">
+                    জন্ম ১২ সেপ্টেম্বর ২০০০, গাজীপুর। জাতীয় বিশ্ববিদ্যালয় হতে বিএসএস ডিগ্রি অর্জনকারী এই স্বপ্নবাজ তরুণ কম্পিউটার চালনায় অত্যন্ত পারদর্শী। তিনি আগামীর বাংলাদেশ ও যুবসমাজের সার্বিক উন্নয়নের লক্ষ্যে নিরলসভাবে কাজ করে যাচ্ছেন।
+                </p>
+                <p class="text-gray-400 leading-relaxed en hidden-lang">
+                    Born on Sept 12, 2000, in Gazipur. A BSS graduate from National University, he is highly skilled in computing. He is dedicated to the holistic development of tomorrow's Bangladesh and its youth.
+                </p>
             </div>
         </div>
     </section>
 
-    <footer id="contact" class="pt-20 pb-10 px-6 border-t border-white/10">
-        <div class="container mx-auto grid md:grid-cols-3 gap-12 mb-12">
+    <section class="py-20 px-6 text-center">
+        <div class="container mx-auto max-w-4xl card-hover p-10 rounded-[40px] bg-gradient-to-br from-purple-900/20 to-transparent">
+            <h2 class="text-3xl font-bold mb-4 bn">হাসি শিক্ষা ফাউন্ডেশন</h2>
+            <h2 class="text-3xl font-bold mb-4 en hidden-lang">Hashi Shikkha Foundation</h2>
+            <p class="text-gray-400 mb-6 bn">গরীব ও মেধাবী ছাত্র-ছাত্রীদের শিক্ষা উপকরণ ও বৃত্তি প্রদান আমাদের লক্ষ্য। (আসন্ন)</p>
+            <p class="text-gray-400 mb-6 en hidden-lang">Providing educational materials and scholarships to underprivileged talented students. (Upcoming)</p>
+            <div class="inline-block px-4 py-1 border border-yellow-500/50 text-yellow-500 rounded-full text-xs">COMMING SOON</div>
+        </div>
+    </section>
+
+    <footer id="contact" class="py-20 px-6 border-t border-white/10">
+        <div class="container mx-auto grid md:grid-cols-3 gap-12">
             <div>
-                <h3 class="text-2xl font-bold mb-6 text-purple-500">BDTX CorLabs</h3>
-                <p class="text-gray-400 mb-6">গাজীপুর, ঢাকা, বাংলাদেশ থেকে পরিচালিত একটি বিশ্বস্ত ক্রিপ্টো প্রজেক্ট।</p>
-                <div class="flex gap-4">
-                    <a href="#" class="text-2xl hover:text-purple-400"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-2xl hover:text-purple-400"><i class="fab fa-telegram"></i></a>
-                    <a href="#" class="text-2xl hover:text-purple-400"><i class="fab fa-discord"></i></a>
-                    <a href="#" class="text-2xl hover:text-purple-400"><i class="fab fa-linkedin"></i></a>
+                <h3 class="text-xl font-bold mb-6 bn">সামাজিক মাধ্যম</h3>
+                <h3 class="text-xl font-bold mb-6 en hidden-lang">Social Media</h3>
+                <div class="flex gap-4 text-2xl">
+                    <a href="https://t.me/bdtxofficial" target="_blank" class="hover:text-purple-500 transition"><i class="fab fa-telegram"></i></a>
+                    <a href="https://x.com/bdtxofficial" target="_blank" class="hover:text-purple-500 transition"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://discord.gg/bdtx" target="_blank" class="hover:text-purple-500 transition"><i class="fab fa-discord"></i></a>
+                    <a href="https://linkedin.com/in/yourlink" target="_blank" class="hover:text-purple-500 transition"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
             <div>
-                <h4 class="font-bold mb-6">প্রয়োজনীয় লিঙ্ক</h4>
-                <ul class="space-y-3 text-gray-400 text-sm">
-                    <li><a href="https://www.BDTX.ltd" class="hover:text-white">www.BDTX.ltd</a></li>
-                    <li><a href="https://DhakaBrief.com" class="hover:text-white">DhakaBrief.com</a></li>
-                    <li><i class="fas fa-map-marker-alt mr-2"></i> Gazipur, Dhaka, Bangladesh</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold mb-6">ইমেইল যোগাযোগ</h4>
-                <ul class="space-y-3 text-gray-400 text-sm">
+                <h3 class="text-xl font-bold mb-6 bn">ইমেইল</h3>
+                <h3 class="text-xl font-bold mb-6 en hidden-lang">Email Us</h3>
+                <ul class="text-sm text-gray-400 space-y-2">
                     <li><i class="fas fa-envelope mr-2"></i> contactbdtx@proton.me</li>
                     <li><i class="fas fa-envelope mr-2"></i> bdtxofficial@gmail.com</li>
-                    <li><i class="fas fa-envelope mr-2"></i> mhitshop@gmail.com</li>
                 </ul>
             </div>
-        </div>
-        <div class="container mx-auto text-center border-t border-white/5 pt-8">
-            <p class="text-gray-600 text-xs">&copy; 2026 BDTX CorLabs. All Rights Reserved. | Designed for Bangladesh 🇧🇩</p>
+            <div>
+                <h3 class="text-xl font-bold mb-6 bn">আমাদের প্রজেক্ট</h3>
+                <h3 class="text-xl font-bold mb-6 en hidden-lang">Our Projects</h3>
+                <ul class="text-sm text-gray-400 space-y-2">
+                    <li><a href="https://dhakabrief.com" target="_blank" class="hover:text-white">Dhakabrief.com</a></li>
+                    <li><a href="https://www.bdtx.ltd" target="_blank" class="hover:text-white">BDTX.ltd</a></li>
+                </ul>
+            </div>
         </div>
     </footer>
 
+    <script>
+        function toggleLanguage() {
+            const bnElements = document.querySelectorAll('.bn');
+            const enElements = document.querySelectorAll('.en');
+            const btnText = document.getElementById('langBtnText');
+            
+            if (btnText.innerText === 'English') {
+                bnElements.forEach(el => el.classList.add('hidden-lang'));
+                enElements.forEach(el => el.classList.remove('hidden-lang'));
+                btnText.innerText = 'বাংলা';
+            } else {
+                bnElements.forEach(el => el.classList.remove('hidden-lang'));
+                enElements.forEach(el => el.classList.add('hidden-lang'));
+                btnText.innerText = 'English';
+            }
+        }
+
+        function copyMint() {
+            const text = "4k3DyjR... [আপনার মিন্ট এড্রেস এখানে দিন]";
+            navigator.clipboard.writeText(text);
+            alert("Mint Address Copied!");
+        }
+    </script>
 </body>
 </html>
