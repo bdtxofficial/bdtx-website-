@@ -7,250 +7,230 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&family=Inter:wght@400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;700;900&display=swap');
         
         :root {
-            --navy: #0a192f;
-            --black: #020617;
-            --purple: #7c3aed;
+            --deep-navy: #050a18;
+            --rich-black: #02040a;
+            --accent-purple: #8b5cf6;
+            --text-light: #f8fafc;
         }
 
         body {
             font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: var(--black);
-            color: #e2e8f0;
+            background-color: var(--rich-black);
+            color: var(--text-light);
             scroll-behavior: smooth;
         }
 
-        .gradient-bg {
-            background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.15), transparent),
-                        radial-gradient(circle at bottom left, rgba(10, 25, 47, 1), transparent);
+        /* প্রফেশনাল ডার্ক গ্রিড ব্যাকগ্রাউন্ড */
+        .main-bg {
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(30, 58, 138, 0.2) 0%, transparent 40%);
+            background-attachment: fixed;
         }
 
+        /* কার্ডের নতুন কালার যা লিখাকে ফুটিয়ে তুলবে */
         .glass-card {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            transition: all 0.3s ease;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .glass-card:hover {
-            border-color: var(--purple);
+            border-color: var(--accent-purple);
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.3);
         }
 
-        .nav-blur {
-            background: rgba(2, 6, 23, 0.85);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+        .nav-sticky {
+            background: rgba(2, 4, 10, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
         }
 
         .hidden-lang { display: none !important; }
 
-        .roadmap-line {
-            position: relative;
-        }
-        .roadmap-line::before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--purple);
+        .highlight-text {
+            color: #a78bfa;
+            font-weight: 700;
         }
 
-        .btn-premium {
-            background: linear-gradient(90deg, #7c3aed, #4f46e5);
-            transition: all 0.3s ease;
+        .btn-action {
+            background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
         }
-        .btn-premium:hover {
-            box-shadow: 0 0 20px rgba(124, 58, 237, 0.6);
-            filter: brightness(1.1);
+
+        .btn-action:hover {
+            filter: brightness(1.2);
+            transform: scale(1.05);
         }
     </style>
 </head>
-<body class="gradient-bg overflow-x-hidden">
+<body class="main-bg">
 
-    <nav class="fixed w-full z-50 nav-blur">
+    <nav class="fixed w-full z-50 nav-sticky">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center font-bold text-xl">B</div>
-                <span class="text-2xl font-black tracking-tighter text-white">BDTX <span class="text-xs font-normal text-purple-400 block -mt-2">CORLABS</span></span>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center font-bold text-2xl text-white shadow-lg shadow-purple-500/20">B</div>
+                <div>
+                    <span class="text-xl font-black tracking-widest text-white block">BDTX</span>
+                    <span class="text-[10px] text-purple-400 font-bold uppercase tracking-widest">Digital Token Exchange</span>
+                </div>
             </div>
             
-            <div class="hidden lg:flex gap-8 text-sm font-medium items-center">
-                <a href="#about" class="hover:text-purple-400 transition bn">সম্পর্কে</a><a href="#about" class="en hidden-lang">About</a>
-                <a href="#mission" class="hover:text-purple-400 transition bn">মিশন</a><a href="#mission" class="en hidden-lang">Mission</a>
-                <a href="#story" class="hover:text-purple-400 transition bn">গল্প</a><a href="#story" class="en hidden-lang">Our Story</a>
-                <a href="#how-to-buy" class="hover:text-purple-400 transition bn">কিভাবে কিনবেন</a><a href="#how-to-buy" class="en hidden-lang">How to Buy</a>
-                
-                <button onclick="changeLang()" class="border border-purple-500 text-purple-400 px-4 py-1 rounded-full text-xs hover:bg-purple-600 hover:text-white transition">
-                    <span id="langLabel">English</span>
+            <div class="flex items-center gap-6">
+                <div class="hidden lg:flex gap-6 text-sm font-semibold">
+                    <a href="#about" class="hover:text-purple-400 bn">সম্পর্কে</a><a href="#about" class="en hidden-lang">About</a>
+                    <a href="#story" class="hover:text-purple-400 bn">গল্প</a><a href="#story" class="en hidden-lang">Story</a>
+                    <a href="#how-to-buy" class="hover:text-purple-400 bn">ক্রয় পদ্ধতি</a><a href="#how-to-buy" class="en hidden-lang">Buy Info</a>
+                </div>
+
+                <button onclick="toggleLanguage()" class="bg-purple-600/20 border border-purple-500 text-purple-300 px-4 py-1.5 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-all">
+                    <i class="fas fa-language mr-2"></i><span id="langBtnText">English</span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <section class="pt-40 pb-20 px-6">
-        <div class="container mx-auto text-center">
-            <div class="inline-block px-4 py-1 rounded-full bg-purple-900/30 border border-purple-500/30 text-purple-400 text-xs font-bold mb-6 animate-pulse">
-                SOLANA NETWORK LIVE PROJECT
-            </div>
-            <h1 class="text-4xl md:text-7xl font-extrabold mb-6 leading-tight text-white">
-                <span class="bn">বাংলাদেশ ডিজিটাল <br><span class="text-purple-500">টোকেন এক্সচেঞ্জ (BDTX)</span></span>
-                <span class="en hidden-lang">Bangladesh Digital <br><span class="text-purple-500">Token Exchange (BDTX)</span></span>
+    <section class="pt-44 pb-24 px-6 text-center">
+        <div class="container mx-auto">
+            <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
+                <span class="bn text-white">বাংলাদেশ ডিজিটাল <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">টোকেন এক্সচেঞ্জ (BDTX)</span></span>
+                <span class="en hidden-lang text-white">Bangladesh Digital <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Token Exchange (BDTX)</span></span>
             </h1>
-            <p class="max-w-2xl mx-auto text-gray-400 mb-10 text-lg leading-relaxed">
-                <span class="bn">BDTX.ltd ও BDTX CorLabs-এর সম্মিলিত প্রচেষ্টায় গড়ে ওঠা একটি নির্ভরযোগ্য ডিজিটাল ইকোসিস্টেম। আমরা বাংলাদেশের তরুণদের আগামীর পথে এগিয়ে নিতে ওয়াদাবদ্ধ।</span>
-                <span class="en hidden-lang">A reliable digital ecosystem built by BDTX.ltd and BDTX CorLabs. Committed to empowering the youth of Bangladesh.</span>
+            <p class="max-w-3xl mx-auto text-gray-300 text-lg md:text-xl mb-12 leading-relaxed">
+                <span class="bn">BDTX.ltd ও BDTX CorLabs-এর তৈরি সোলানা নেটওয়ার্কের একটি শক্তিশালী ইকোসিস্টেম। আমরা বাংলাদেশের তরুণদের ডিজিটাল অর্থনীতিতে শীর্ষে নিয়ে যেতে অঙ্গীকারবদ্ধ।</span>
+                <span class="en hidden-lang">Built by BDTX.ltd & BDTX CorLabs on the Solana Network. We are committed to leading the youth of Bangladesh into the digital economy.</span>
             </p>
-            
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://t.me/bdtx_official" target="_blank" class="btn-premium text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2">
-                    <i class="fab fa-telegram"></i> <span class="bn">জয়েন টেলিগ্রাম</span><span class="en hidden-lang">Join Telegram</span>
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="https://t.me/bdtx_official" target="_blank" class="btn-action text-white px-10 py-4 rounded-xl font-bold flex items-center gap-2 transition-all">
+                    <i class="fab fa-telegram-plane text-xl"></i> <span class="bn">টেলিগ্রামে যুক্ত হোন</span><span class="en hidden-lang">Join Telegram</span>
                 </a>
-                <a href="#story" class="bg-white/10 border border-white/20 text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/20 transition">
-                    <span class="bn">গল্পটি পড়ুন</span><span class="en hidden-lang">Read Our Story</span>
+                <a href="#about" class="bg-white/5 border border-white/20 text-white px-10 py-4 rounded-xl font-bold hover:bg-white/10 transition-all">
+                    <span class="bn">বিস্তারিত জানুন</span><span class="en hidden-lang">Learn More</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-20 px-6 bg-navy/20">
+    <section id="about" class="py-20 px-6">
         <div class="container mx-auto">
-            <div class="glass-card p-10 rounded-[40px]">
-                <h2 class="text-3xl font-bold text-purple-400 mb-6">
-                    <span class="bn">BDTX সম্পর্কে বিস্তারিত</span>
-                    <span class="en hidden-lang">Detailed About BDTX</span>
+            <div class="glass-card p-8 md:p-16 rounded-[40px] mb-12">
+                <h2 class="text-3xl font-bold text-white mb-8 border-l-4 border-purple-500 pl-4">
+                    <span class="bn">BDTX কি এবং কেন?</span>
+                    <span class="en hidden-lang">What is BDTX?</span>
                 </h2>
-                <div class="grid lg:grid-cols-2 gap-10 text-gray-300 leading-relaxed">
+                <div class="grid md:grid-cols-2 gap-12 text-gray-200 leading-relaxed text-lg">
                     <div>
-                        <p class="mb-4 bn font-bold text-white">BDTX আসলে কি?</p>
-                        <p class="mb-4 bn">BANGLADESH DIGITAL TOKEN EXCHANGE বা সংক্ষেপে BDTX হলো বাংলাদেশের প্রথম সারির একটি গবেষণাভিত্তিক ডিজিটাল সম্পদ প্রকল্প। এটি BDTX.ltd-এর একটি মেগা প্রজেক্ট যা বিডিটিএক্স কোরল্যাবস (BDTX CorLabs)-এ দীর্ঘদিন গবেষণার পর সোলানা (Solana) ব্লকবক্স নেটওয়ার্কে লঞ্চ করা হচ্ছে।</p>
-                        
-                        <p class="mb-4 en hidden-lang font-bold text-white">What is BDTX?</p>
-                        <p class="mb-4 en hidden-lang">BANGLADESH DIGITAL TOKEN EXCHANGE (BDTX) is a premier research-based digital asset project. It is a mega project of BDTX.ltd, developed after extensive research at BDTX CorLabs on the Solana network.</p>
+                        <p class="mb-6 bn">
+                            <span class="highlight-text text-white">BANGLADESH DIGITAL TOKEN EXCHANGE (BDTX)</span> হলো একটি সোলানা নেটওয়ার্ক ভিত্তিক অত্যাধুনিক ডিজিটাল টোকেন। এটি <strong>BDTX.ltd</strong> ও <strong>BDTX CorLabs</strong> এর নিরলস গবেষণার ফসল। আমরা কেবল একটি টোকেন নই, আমরা একটি সফল ক্রিপ্টোকারেন্সি ইকোসিস্টেম গড়ার লক্ষ্যে কাজ করছি।
+                        </p>
+                        <p class="en hidden-lang">
+                            <span class="highlight-text text-white">BDTX</span> is a cutting-edge digital token on the Solana network, developed by BDTX.ltd and BDTX CorLabs. We aim to build a successful cryptocurrency ecosystem in Bangladesh.
+                        </p>
+                        <p class="bn">আমরা বাংলাদেশের তরুণদের ওয়াদা দিচ্ছি, বড় বড় টোকেনের মতোই আমরা সফল হবো। দক্ষ রিসার্চ ল্যাব এবং অভিজ্ঞ টিমের মাধ্যমে আমরা আমাদের প্রতিটি কথা বাস্তবায়ন করবো।</p>
+                        <p class="en hidden-lang">We promise the youth of Bangladesh that we will succeed just like global giant tokens. We will fulfill our promises with our expert team.</p>
                     </div>
-                    <div>
-                        <p class="mb-4 bn">আমরা শুধুমাত্র একটি টোকেন নই; আমরা একটি পূর্ণাঙ্গ ডিজিটাল এক্সচেঞ্জ ইকোসিস্টেম। আমাদের লক্ষ্য হলো বড় বড় ক্রিপ্টো টোকেনগুলো (যেমন Bitcoin, Solana, Ethereum) যে সফলতার পথ দেখিয়ে গেছে, সেই একই প্রযুক্তিতে দক্ষ হয়ে বাংলাদেশের সাধারণ বিনিয়োগকারী ও তরুণ সমাজকে একটি নিরাপদ প্লাটফর্ম প্রদান করা।</p>
-                        <p class="en hidden-lang">We are not just a token; we are a complete digital exchange ecosystem. Our goal is to provide a secure platform for Bangladeshi investors using the same successful tech shown by global giants like Bitcoin and Solana.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="mission" class="py-20 px-6">
-        <div class="container mx-auto">
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="glass-card p-8 rounded-3xl border-l-4 border-purple-500">
-                    <h3 class="text-2xl font-bold mb-4 text-white bn">মিশন ও ভিশন</h3>
-                    <h3 class="text-2xl font-bold mb-4 text-white en hidden-lang">Mission & Vision</h3>
-                    <p class="text-gray-400 bn">আমাদের মিশন হলো বাংলাদেশের প্রতিটি প্রান্তে ডিজিটাল কারেন্সির শিক্ষা পৌঁছে দেওয়া। আমরা বড় বড় টোকেনগুলোর দেখানো পথে হাঁটছি, আমাদের নিজস্ব রিসার্চ ল্যাব প্রতিষ্ঠা করেছি এবং দক্ষ প্রযুক্তিবিদদের নিয়োগ দিয়েছি। আমরা আগামীর বাংলাদেশকে পুরো বিশ্বের সামনে একটি ক্রিপ্টো-ফ্রেন্ডলি দেশ হিসেবে তুলে ধরতে চাই। আমাদের ভিশন হলো ২০৩০ সালের মধ্যে বিডিটিএক্স টোকেনকে এশিয়ার অন্যতম শীর্ষ ইউটিলিটি টোকেন হিসেবে প্রতিষ্ঠিত করা।</p>
-                    <p class="text-gray-400 en hidden-lang">Our mission is to spread digital currency education across Bangladesh. We are following global giants, have built our own research labs, and hired top experts. We want to represent Bangladesh as a crypto-friendly nation globally. Our vision is to make BDTX a top utility token in Asia by 2030.</p>
-                </div>
-                <div class="glass-card p-8 rounded-3xl border-l-4 border-blue-500">
-                    <h3 class="text-2xl font-bold mb-4 text-white bn">তরুণদের সাথে আমাদের ওয়াদা</h3>
-                    <h3 class="text-2xl font-bold mb-4 text-white en hidden-lang">Our Promise to Youth</h3>
-                    <p class="text-gray-400 bn">BDTX বাংলাদেশের তরুণদের সাথে ওয়াদাবদ্ধ। আমরা জানি বাংলাদেশের তরুণ সমাজ প্রযুক্তিতে কতটা দক্ষ, কিন্তু সঠিক সুযোগের অভাবে তারা পিছিয়ে থাকে। আমরা আমাদের ওয়াদা থেকে এক পা-ও নড়বো না; প্রতিটি ধাপে স্বচ্ছতা বজায় রেখে আমরা একটি সফল ক্রিপ্টোকারেন্সি ইকোসিস্টেম উপহার দিব। আমরা কোনো আকাশকুসুম কল্পনা নয়, বরং গবেষণালব্ধ ফলাফলের ভিত্তিতে কাজ করছি।</p>
-                    <p class="text-gray-400 en hidden-lang">BDTX is committed to the youth of Bangladesh. We know how tech-savvy our youth are. We won't back down from our promise. Maintaining transparency at every step, we will deliver a successful ecosystem based on real research, not just hype.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="story" class="py-20 px-6 bg-purple-900/5">
-        <div class="container mx-auto max-w-4xl text-center">
-            <h2 class="text-3xl md:text-5xl font-black mb-10 text-white">
-                <span class="bn">কেন BDTX? এক স্বপ্নের মহাকাব্য</span>
-                <span class="en hidden-lang">Why BDTX? A Saga of Dreams</span>
-            </h2>
-            <div class="glass-card p-10 rounded-[50px] leading-relaxed text-gray-300 text-lg italic shadow-2xl">
-                <p class="mb-6 bn text-justify">"গল্পটি শুরু হয়েছিল একটি ছোট রুম থেকে, যেখানে আমরা বাংলাদেশের তরুণদের ডিজিটাল অর্থনীতিতে সংগ্রাম করতে দেখতাম। বিশ্বজুড়ে যখন ক্রিপ্টোকারেন্সি বিপ্লব চলছে, তখন বাংলাদেশের মেধাবী তরুণরা সঠিক গাইডেন্স আর দেশীয় কোনো প্লাটফর্ম না থাকায় পিছিয়ে ছিল। এই অভাববোধ থেকেই BDTX-এর জন্ম। এটি কেবল একটি ডিজিটাল কয়েন নয়, এটি হাজারো তরুণের স্বপ্ন আর আগামীর বাংলাদেশের আধুনিক অর্থনীতির ভিত্তি। আমরা চেয়েছি এমন একটি মাধ্যম তৈরি করতে যা হবে নিরাপদ, স্বচ্ছ এবং যা হবে আমাদের নিজেদের। বাংলাদেশের চাহিদা আর তারুণ্যের আকাশছোঁয়া স্বপ্ন এক সুতোয় গেঁথেছে BDTX।"</p>
-                <p class="en hidden-lang text-justify">"The story began in a small room, watching Bangladeshi youth struggle in the digital economy. While the world saw a crypto revolution, our talent lagged due to lack of a local platform. This gap gave birth to BDTX. It is more than just a coin; it is the dream of thousands and the foundation of a modern Bangladesh. We wanted to build something secure, transparent, and uniquely ours."</p>
-                <div class="text-purple-500 font-bold mt-4">— BDTX CorLabs Team</div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-20 px-6">
-        <div class="container mx-auto">
-            <h2 class="text-center text-3xl font-bold mb-12 bn">দীর্ঘদিনের অভিজ্ঞতা ও বিশ্বস্ততা</h2>
-            <h2 class="text-center text-3xl font-bold mb-12 en hidden-lang">Experience & Trust</h2>
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="glass-card p-6 rounded-2xl text-center">
-                    <h4 class="font-bold text-white mb-2">DhakaBrief.com</h4>
-                    <p class="text-xs text-gray-500 bn">অনলাইন নিউজ পোর্টাল</p>
-                </div>
-                <div class="glass-card p-6 rounded-2xl text-center">
-                    <h4 class="font-bold text-white mb-2">MH IT SHOP</h4>
-                    <p class="text-xs text-gray-500 bn">আইটি সলিউশন</p>
-                </div>
-                <div class="glass-card p-6 rounded-2xl text-center">
-                    <h4 class="font-bold text-white mb-2">Fiberchem Trading</h4>
-                    <p class="text-xs text-gray-500 bn">ট্রেডিং কর্পোরেশন</p>
-                </div>
-                <div class="glass-card p-6 rounded-2xl text-center">
-                    <h4 class="font-bold text-white mb-2">Nextcity Builders</h4>
-                    <p class="text-xs text-gray-500 bn">বিল্ডার্স এন্ড ট্রেড</p>
-                </div>
-            </div>
-            <p class="mt-10 text-center text-gray-400 max-w-3xl mx-auto bn">Bdtx.ltd দীর্ঘদিন ধরে উপরোক্ত প্রতিষ্ঠানগুলোর সাথে সফলতার সাথে কাজ করে আসছে। আমাদের এই দীর্ঘ অভিজ্ঞতা ও শক্তিশালী টিমওয়ার্ক আমাদের বিশ্বাস জোগায় যে BDTX-এও আমরা সফল হবো ইনশাআল্লাহ।</p>
-            <p class="mt-10 text-center text-gray-400 max-w-3xl mx-auto en hidden-lang">Bdtx.ltd has successfully worked with these organizations for a long time. Our experience gives us the confidence to succeed with BDTX.</p>
-        </div>
-    </section>
-
-    <section id="how-to-buy" class="py-20 px-6 bg-navy/10">
-        <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 bn">বিনিয়োগ ও লভ্যাংশ</h2>
-                <h2 class="text-4xl font-bold mb-4 en hidden-lang">Investment & Benefits</h2>
-            </div>
-            <div class="grid lg:grid-cols-2 gap-12">
-                <div class="space-y-6">
-                    <h3 class="text-2xl font-bold text-white bn">কেন BDTX মানুষ স্টক করবে?</h3>
-                    <h3 class="text-2xl font-bold text-white en hidden-lang">Why Stake BDTX?</h3>
-                    <div class="glass-card p-6 rounded-2xl">
-                        <ul class="space-y-4 text-gray-300">
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span class="bn"><strong>উচ্চ মুনাফা:</strong> সোলানা নেটওয়ার্কের দ্রুততম লেনদেনের কারণে এই টোকেনের ভ্যালু ভবিষ্যতে অনেক বাড়বে।</span>
-                                <span class="en hidden-lang"><strong>High Profit:</strong> Solana's fast transaction speed will surge the token's value.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span class="bn"><strong>স্থায়িত্ব:</strong> আমরা রিয়েল বিজনেস (News, IT, Trade) দিয়ে ব্যাকড, তাই এটি স্থিতিশীল।</span>
-                                <span class="en hidden-lang"><strong>Stability:</strong> We are backed by real businesses (IT, News, Trade).</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span class="bn"><strong>স্ট্যাকিং রিওয়ার্ড:</strong> আপনার কেনা টোকেন হোল্ড করলে বা স্টক করলে কোম্পানি থেকে নিয়মিত বোনাস দেওয়া হবে।</span>
-                                <span class="en hidden-lang"><strong>Staking Reward:</strong> Earn regular bonuses by holding or staking tokens.</span>
-                            </li>
+                    <div class="bg-purple-900/20 p-6 rounded-2xl border border-purple-500/20">
+                        <h4 class="font-bold text-white mb-4 bn">আমাদের সফল পার্টনারশিপ:</h4>
+                        <h4 class="font-bold text-white mb-4 en hidden-lang">Our Successful Partnerships:</h4>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> Dhakabrief.com</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> MH IT SHOP</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> Fiberchem Trading Corporation</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> Nextcity Builders and Trade</li>
                         </ul>
                     </div>
                 </div>
-                
-                <div class="space-y-6">
-                    <h3 class="text-2xl font-bold text-white bn">কিভাবে কিনবেন? (রোডম্যাপ)</h3>
-                    <h3 class="text-2xl font-bold text-white en hidden-lang">How to Buy? (Roadmap)</h3>
-                    <div class="roadmap-line space-y-8 pl-10">
-                        <div class="relative">
-                            <div class="absolute -left-12 top-0 w-6 h-6 bg-purple-600 rounded-full border-4 border-black"></div>
-                            <h4 class="font-bold bn">ধাপ ১: ওয়ালেট তৈরি</h4><h4 class="font-bold en hidden-lang">Step 1: Create Wallet</h4>
-                            <p class="text-sm text-gray-400 bn">প্রথমে Phantom বা Solflare ওয়ালেট ইন্সটল করুন।</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-navy-900/50">
+        <div class="container mx-auto grid md:grid-cols-2 gap-8">
+            <div class="glass-card p-10 rounded-3xl">
+                <i class="fas fa-rocket text-4xl text-purple-500 mb-6"></i>
+                <h3 class="text-2xl font-bold mb-4 bn">আমাদের মিশন</h3>
+                <h3 class="text-2xl font-bold mb-4 en hidden-lang">Our Mission</h3>
+                <p class="text-gray-300 bn">আমাদের মিশন হলো পুরো বাংলাদেশে ডিজিটাল কারেন্সির সুফল পৌঁছে দেওয়া এবং বিশ্ববাজারে বাংলাদেশের প্রতিনিধিত্ব করা।</p>
+                <p class="text-gray-300 en hidden-lang">Our mission is to bring the benefits of digital currency to every corner of Bangladesh and represent our nation globally.</p>
+            </div>
+            <div class="glass-card p-10 rounded-3xl">
+                <i class="fas fa-eye text-4xl text-indigo-500 mb-6"></i>
+                <h3 class="text-2xl font-bold mb-4 bn">আমাদের ভিশন</h3>
+                <h3 class="text-2xl font-bold mb-4 en hidden-lang">Our Vision</h3>
+                <p class="text-gray-300 bn">বাংলাদেশের তরুণদের প্রযুক্তিতে দক্ষ করে গড়ে তোলা এবং BDTX-কে এশিয়ার অন্যতম সেরা টোকেনে পরিণত করা।</p>
+                <p class="text-gray-300 en hidden-lang">To empower Bangladeshi youth with technology and make BDTX one of the top tokens in Asia.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="story" class="py-24 px-6 relative overflow-hidden">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold bn">কেন BDTX? (গল্প)</h2>
+                <h2 class="text-4xl font-bold en hidden-lang">Why BDTX? (The Story)</h2>
+            </div>
+            <div class="glass-card p-12 rounded-[50px] border-t-4 border-purple-500 relative">
+                <i class="fas fa-quote-left absolute top-8 left-8 text-6xl text-purple-500/10"></i>
+                <p class="text-xl italic text-gray-200 leading-relaxed text-justify bn">
+                    "BDTX-এর শুরুটা ছিল একটি স্বপ্ন থেকে। আমরা দেখেছি বাংলাদেশের তরুণরা যখন বিশ্বজুড়ে ক্রিপ্টোকারেন্সির বিপ্লব দেখছে, তখন আমাদের দেশে সঠিক কোনো মাধ্যম ছিল না। তরুণদের মেধা আর আমাদের দেশের চাহিদা মিলিয়ে আমরা একটি সুন্দর গল্পের মতো BDTX-কে সাজিয়েছি। এটি কেবল একটি মুদ্রাস্ফীতি কমানোর মাধ্যম নয়, এটি কোটি মানুষের স্বপ্ন পূরণের হাতিয়ার।"
+                </p>
+                <p class="text-xl italic text-gray-200 leading-relaxed text-justify en hidden-lang">
+                    "BDTX started from a dream. We saw the youth of Bangladesh observing the global crypto revolution without a local platform. We combined their talent with our nation's demand to create BDTX. It is not just a token; it's a tool to fulfill the dreams of millions."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-to-buy" class="py-20 px-6">
+        <div class="container mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <h3 class="text-3xl font-bold mb-8 bn">কেন BDTX কিনবেন ও স্টক করবেন?</h3>
+                    <h3 class="text-3xl font-bold mb-8 en hidden-lang">Why Buy & Stake BDTX?</h3>
+                    <div class="space-y-6">
+                        <div class="flex gap-4 p-6 bg-purple-900/10 rounded-2xl border border-purple-500/20">
+                            <div class="text-3xl text-purple-500"><i class="fas fa-chart-line"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white bn">উচ্চ মুনাফা</h4><h4 class="font-bold text-white en hidden-lang">High Growth</h4>
+                                <p class="text-sm text-gray-400 bn">সোলানা নেটওয়ার্কের দ্রুত গতির কারণে ভ্যালু বাড়ার সম্ভাবনা প্রবল।</p>
+                                <p class="text-sm text-gray-400 en hidden-lang">Solana network ensures fast growth and high value potential.</p>
+                            </div>
                         </div>
-                        <div class="relative">
-                            <div class="absolute -left-12 top-0 w-6 h-6 bg-purple-600 rounded-full border-4 border-black"></div>
-                            <h4 class="font-bold bn">ধাপ ২: সোলানা লোড করুন</h4><h4 class="font-bold en hidden-lang">Step 2: Load Solana</h4>
-                            <p class="text-sm text-gray-400 bn">বাইনান্স বা অন্য সোর্স থেকে আপনার ওয়ালেটে SOL কয়েন নিন।</p>
+                        <div class="flex gap-4 p-6 bg-purple-900/10 rounded-2xl border border-purple-500/20">
+                            <div class="text-3xl text-purple-500"><i class="fas fa-shield-alt"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white bn">নিরাপদ স্টক</h4><h4 class="font-bold text-white en hidden-lang">Safe Staking</h4>
+                                <p class="text-sm text-gray-400 bn">টোকেন স্টক করলে নিয়মিত রিওয়ার্ড ও বোনাস পাওয়া যাবে।</p>
+                                <p class="text-sm text-gray-400 en hidden-lang">Earn regular rewards and bonuses by staking BDTX.</p>
+                            </div>
                         </div>
-                        <div class="relative">
-                            <div class="absolute -left-12 top-0 w-6 h-6 bg-purple-600 rounded-full border-4 border-black"></div>
-                            <h4 class="font-bold bn">ধাপ ৩: এক্সচেঞ্জ করুন</h4><h4 class="font-bold en hidden-lang">Step 3: Exchange</h4>
-                            <p class="text-sm text-gray-400 bn">আমাদের অফিসিয়াল লিঙ্ক বা Raydium/Jupiter থেকে SOL দিয়ে BDTX সোয়াপ করুন।</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold mb-8 bn">ক্রয় করার রোডম্যাপ</h3>
+                    <h3 class="text-3xl font-bold mb-8 en hidden-lang">Buying Roadmap</h3>
+                    <div class="border-l-2 border-purple-500 ml-4 space-y-10">
+                        <div class="relative pl-10">
+                            <div class="absolute -left-[11px] top-0 w-5 h-5 bg-purple-500 rounded-full"></div>
+                            <h4 class="font-bold text-white bn">ধাপ ১: ফ্যান্টম ওয়ালেট</h4><h4 class="font-bold text-white en hidden-lang">Step 1: Phantom Wallet</h4>
+                            <p class="text-sm text-gray-400 bn">প্লে-স্টোর থেকে Phantom Wallet নামিয়ে অ্যাকাউন্ট খুলুন।</p>
+                            <p class="text-sm text-gray-400 en hidden-lang">Download Phantom Wallet and create your account.</p>
+                        </div>
+                        <div class="relative pl-10">
+                            <div class="absolute -left-[11px] top-0 w-5 h-5 bg-purple-500 rounded-full"></div>
+                            <h4 class="font-bold text-white bn">ধাপ ২: সোলানা (SOL) ডিপোজিট</h4><h4 class="font-bold text-white en hidden-lang">Step 2: Deposit SOL</h4>
+                            <p class="text-sm text-gray-400 bn">বাইনান্স বা অন্য সোর্স থেকে সোলানা ওয়ালেটে নিন।</p>
+                            <p class="text-sm text-gray-400 en hidden-lang">Transfer Solana (SOL) from Binance to your wallet.</p>
+                        </div>
+                        <div class="relative pl-10">
+                            <div class="absolute -left-[11px] top-0 w-5 h-5 bg-purple-500 rounded-full"></div>
+                            <h4 class="font-bold text-white bn">ধাপ ৩: BDTX সোয়াপ</h4><h4 class="font-bold text-white en hidden-lang">Step 3: Swap BDTX</h4>
+                            <p class="text-sm text-gray-400 bn">ওয়ালেটের ভেতর সোয়াপ অপশন থেকে SOL দিয়ে BDTX কিনুন।</p>
+                            <p class="text-sm text-gray-400 en hidden-lang">Swap SOL for BDTX directly within your wallet.</p>
                         </div>
                     </div>
                 </div>
@@ -258,88 +238,78 @@
         </div>
     </section>
 
-    <section class="py-20 px-6">
-        <div class="container mx-auto glass-card rounded-[50px] p-12 text-center border-2 border-purple-500/30 overflow-hidden relative">
-            <div class="absolute -top-10 -right-10 w-40 h-40 bg-yellow-500/10 blur-[50px] rounded-full"></div>
-            <h2 class="text-3xl font-black mb-6 bn">আসন্ন প্রজেক্ট: হাসি শিক্ষা ফাউন্ডেশন</h2>
-            <h2 class="text-3xl font-black mb-6 en hidden-lang">Upcoming: Hashi Shikkha Foundation</h2>
-            <p class="max-w-2xl mx-auto text-gray-300 bn">আমরা বিশ্বাস করি জ্ঞানই শক্তি। BDTX-এর আয়ের একটি অংশ সরাসরি ব্যয় হবে আমাদের 'হাসি শিক্ষা ফাউন্ডেশন'-এ। যেখানে গরীব ও মেধাবী ছাত্র-ছাত্রীদের ফ্রিতে শিক্ষা উপকরণ এবং উচ্চশিক্ষার জন্য স্কলারশিপ প্রদান করা হবে। (আসন্ন)</p>
-            <p class="max-w-2xl mx-auto text-gray-300 en hidden-lang">A portion of BDTX earnings will fund our 'Hashi Shikkha Foundation', providing free educational materials and scholarships to talented underprivileged students.</p>
-        </div>
-    </section>
-
-    <section id="founder" class="py-20 px-6">
-        <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-10 bn">ফাউন্ডার পরিচিতি</h2>
-            <h2 class="text-3xl font-bold mb-10 en hidden-lang">Founder Details</h2>
-            <div class="max-w-3xl mx-auto glass-card p-10 rounded-3xl">
-                <h3 class="text-3xl font-black text-purple-400 mb-2">MD. MONIR HOSSAIN</h3>
-                <p class="text-sm text-gray-500 mb-6">(Shihab-Ullah Khan Monir)</p>
-                <p class="text-gray-300 bn leading-relaxed">জন্ম ১২ সেপ্টেম্বর ২০০০ সালে গাজীপুরে। তিনি জাতীয় বিশ্ববিদ্যালয় হতে বিএসএস ডিগ্রি অর্জন করেছেন এবং কম্পিউটার চালনায় অত্যন্ত পারদর্শী। তিনি আগামীর বাংলাদেশ ও যুবসমাজের সার্বিক উন্নয়নের লক্ষ্যে কাজ করে যাচ্ছেন। তাঁর দূরদর্শী চিন্তাভাবনা আর প্রযুক্তির মেলবন্ধনেই BDTX আজ আলোর মুখ দেখছে।</p>
-                <p class="text-gray-400 en hidden-lang leading-relaxed">Born on Sept 12, 2000, in Gazipur. A BSS graduate from National University and a computer expert. He is working tirelessly for the overall development of the youth and future Bangladesh.</p>
+    <section class="py-20 px-6 bg-purple-900/5">
+        <div class="container mx-auto grid md:grid-cols-2 gap-12">
+            <div class="glass-card p-10 rounded-3xl border-2 border-yellow-500/20">
+                <h3 class="text-2xl font-bold text-yellow-500 mb-4 bn">হাসি শিক্ষা ফাউন্ডেশন (আসন্ন)</h3>
+                <h3 class="text-2xl font-bold text-yellow-500 mb-4 en hidden-lang">Hashi Education Foundation</h3>
+                <p class="text-gray-300 bn">গরীব মেধাবী শিক্ষার্থীদের জন্য বিডিটিএক্স-এর আয়ের একটি অংশ শিক্ষা উপকরণ ও স্কলারশিপ হিসেবে ব্যয় হবে।</p>
+                <p class="text-gray-300 en hidden-lang">A portion of BDTX profits will provide scholarships and materials for underprivileged students.</p>
+            </div>
+            <div class="glass-card p-10 rounded-3xl">
+                <h3 class="text-2xl font-bold text-white mb-2 bn">ফাউন্ডার পরিচিতি</h3>
+                <h3 class="text-2xl font-bold text-white mb-2 en hidden-lang">Founder Profile</h3>
+                <h4 class="text-purple-400 font-bold mb-4">MD. MONIR HOSSAIN</h4>
+                <p class="text-sm text-gray-400 bn">জাতীয় বিশ্ববিদ্যালয় হতে বিএসএস ডিগ্রিধারী এবং আইটি বিশেষজ্ঞ। তিনি গাজীপুরে জন্মগ্রহণ করেন এবং বাংলাদেশের তরুণদের স্বপ্ন বাস্তবায়নে কাজ করছেন।</p>
+                <p class="text-sm text-gray-400 en hidden-lang">BSS graduate from National University and IT specialist. Born in Gazipur, he is working to fulfill the dreams of BD youth.</p>
             </div>
         </div>
     </section>
 
     <footer class="pt-20 pb-10 px-6 border-t border-white/10">
         <div class="container mx-auto">
-            <div class="grid md:grid-cols-3 gap-12 mb-16">
-                <div>
-                    <h3 class="text-xl font-bold mb-6 bn">যোগাযোগ করুন</h3>
-                    <h3 class="text-xl font-bold mb-6 en hidden-lang">Contact Us</h3>
-                    <ul class="text-gray-400 space-y-4 text-sm">
-                        <li><i class="fas fa-envelope text-purple-500 mr-2"></i> contactbdtx@proton.me</li>
-                        <li><i class="fas fa-envelope text-purple-500 mr-2"></i> bdtxofficial@gmail.com</li>
-                        <li><i class="fas fa-envelope text-purple-500 mr-2"></i> mhitshop@gmail.com</li>
-                        <li><i class="fas fa-map-marker-alt text-purple-500 mr-2"></i> Gazipur, Dhaka, Bangladesh</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-6 bn">গুরুত্বপূর্ণ লিঙ্ক</h3>
-                    <h3 class="text-xl font-bold mb-6 en hidden-lang">Quick Links</h3>
-                    <ul class="text-gray-400 space-y-4 text-sm">
-                        <li><a href="https://bdtx.ltd/" target="_blank" class="hover:text-white transition">www.BDTX.ltd</a></li>
-                        <li><a href="https://www.dhakabrief.com/?m=1" target="_blank" class="hover:text-white transition">DhakaBrief.com (News Portal)</a></li>
-                        <li><a href="https://www.crunchbase.com/organization/bdtx-corlabs" target="_blank" class="hover:text-white transition">Crunchbase Profile</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-6 bn">সোশ্যাল মিডিয়া</h3>
-                    <h3 class="text-xl font-bold mb-6 en hidden-lang">Social Media</h3>
-                    <div class="flex gap-4">
-                        <a href="https://x.com/BDTXOFFICIAL" target="_blank" class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center hover:bg-purple-600 transition text-xl"><i class="fab fa-x-twitter"></i></a>
-                        <a href="https://t.me/BDTX_CorLabs" target="_blank" class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center hover:bg-purple-600 transition text-xl"><i class="fab fa-telegram-plane"></i></a>
-                        <a href="https://discord.gg/rgcM9h3nJ" target="_blank" class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center hover:bg-purple-600 transition text-xl"><i class="fab fa-discord"></i></a>
+            <div class="grid md:grid-cols-4 gap-12 mb-16 text-sm">
+                <div class="col-span-2">
+                    <h3 class="text-2xl font-black mb-6">BDTX.ltd</h3>
+                    <p class="text-gray-400 bn">আমাদের কোম্পানি দীর্ঘ সময় ধরে বিভিন্ন সেক্টরে কাজ করে আসছে। আপনার আস্থা আমাদের মূলধন।</p>
+                    <p class="text-gray-400 en hidden-lang">Our company has been working in various sectors. Your trust is our main capital.</p>
+                    <div class="flex gap-5 mt-8">
+                        <a href="https://x.com/BDTXOFFICIAL" target="_blank" class="text-2xl text-gray-400 hover:text-white"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://t.me/bdtx_official" target="_blank" class="text-2xl text-gray-400 hover:text-white"><i class="fab fa-telegram"></i></a>
+                        <a href="https://discord.gg/rgcM9h3nJ" target="_blank" class="text-2xl text-gray-400 hover:text-white"><i class="fab fa-discord"></i></a>
                     </div>
-                    <p class="mt-6 text-xs text-gray-500 bn italic">আমাদের অফিসিয়াল আপডেট পেতে ওপরের চ্যানেলগুলোতে যুক্ত হোন।</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-6 bn">ইমেইল</h4><h4 class="font-bold text-white mb-6 en hidden-lang">Emails</h4>
+                    <ul class="text-gray-400 space-y-3">
+                        <li>contactbdtx@proton.me</li>
+                        <li>bdtxofficial@gmail.com</li>
+                        <li>mhitshop@gmail.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-6 bn">লিঙ্কসমূহ</h4><h4 class="font-bold text-white mb-6 en hidden-lang">Useful Links</h4>
+                    <ul class="text-gray-400 space-y-3">
+                        <li><a href="https://bdtx.ltd/" class="hover:text-purple-400">BDTX Official Site</a></li>
+                        <li><a href="https://www.dhakabrief.com/?m=1" class="hover:text-purple-400">Dhaka Brief News</a></li>
+                        <li><a href="https://www.crunchbase.com/organization/bdtx-corlabs" class="hover:text-purple-400">Crunchbase Info</a></li>
+                    </ul>
                 </div>
             </div>
-            
             <div class="border-t border-white/5 pt-8 text-center">
-                <p class="text-xs text-gray-600 mb-2">Powered by BDTX CorLabs & MH IT SHOP</p>
-                <p class="text-xs text-gray-400 uppercase tracking-widest font-bold">
+                <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-2">
                     Official Website of BANGLADESH DIGITAL TOKEN EXCHANGE (BDTX)
                 </p>
-                <p class="text-[10px] text-gray-700 mt-4">&copy; 2026 BDTX. All Rights Reserved.</p>
+                <p class="text-[10px] text-gray-700">Powered by BDTX & MH IT SHOP. &copy; 2026 All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        function changeLang() {
-            const bnEls = document.querySelectorAll('.bn');
-            const enEls = document.querySelectorAll('.en');
-            const label = document.getElementById('langLabel');
-
-            if (label.innerText === 'English') {
-                bnEls.forEach(el => el.classList.add('hidden-lang'));
-                enEls.forEach(el => el.classList.remove('hidden-lang'));
-                label.innerText = 'বাংলা';
+        function toggleLanguage() {
+            const bnItems = document.querySelectorAll('.bn');
+            const enItems = document.querySelectorAll('.en');
+            const btnText = document.getElementById('langBtnText');
+            
+            if (btnText.innerText === 'English') {
+                bnItems.forEach(el => el.classList.add('hidden-lang'));
+                enItems.forEach(el => el.classList.remove('hidden-lang'));
+                btnText.innerText = 'বাংলা';
                 document.documentElement.lang = 'en';
             } else {
-                bnEls.forEach(el => el.classList.remove('hidden-lang'));
-                enEls.forEach(el => el.classList.add('hidden-lang'));
-                label.innerText = 'English';
+                bnItems.forEach(el => el.classList.remove('hidden-lang'));
+                enItems.forEach(el => el.classList.add('hidden-lang'));
+                btnText.innerText = 'English';
                 document.documentElement.lang = 'bn';
             }
         }
